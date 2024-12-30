@@ -1,9 +1,15 @@
 import {} from 'react'
 import "./home.css"
 
+import Button from 'react-bootstrap/Button';
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <Button variant="secondary" size="lg">
+          Large button
+        </Button>
+    </div>
   )
 }
 
