@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import "./donateAbsorvent.css";
+
+import Button from 'react-bootstrap/esm/Button';
 
 const DonateAbsorvents = () => {
   const [name, setName] = useState('');
@@ -13,49 +16,54 @@ const DonateAbsorvents = () => {
   };
 
   return (
-    <div className="donate-absorvents-container">
-      <h1>Doação de Absorventes</h1>
-      <p>Preencha os campos abaixo para realizar a doação.</p>
+    <div className='background'>
+      <div className="donate_absorvents_container">
+        <div></div>
+        <h1>Doação de Absorventes</h1>
+        <p>Preencha os campos abaixo para realizar a doação.</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Nome:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Seu nome"
-            required
-          />
-        </div>
+        <form className='donate_absorvents_form' onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">Nome:</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Seu nome"
+              required
+              />
+          </div>
 
-        <div>
-          <label htmlFor="quantity">Quantidade de Pacotes:</label>
-          <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            min="1"
-            required
-          />
-        </div>
+          <div>
+            <label htmlFor="quantity">Quantidade de Pacotes:</label>
+            <input
+              type="number"
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              min="1"
+              required
+              />
+          </div>
 
-        <div>
-          <label htmlFor="phone">Telefone:</label>
-          <input
-            type="tel"
-            id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="(XX) XXXXX-XXXX"
-            required
-          />
-        </div>
+          <div>
+            <label htmlFor="phone">Telefone:</label>
+            <input
+              type="tel"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="(XX) XXXXX-XXXX"
+              required
+              />
+          </div>
 
-        <button type="submit">Confirmar Doação</button>
-      </form>
+          <Button className="donation_button" variant="secondary" size="lg" type="submit">
+              Confirmar Doação
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
