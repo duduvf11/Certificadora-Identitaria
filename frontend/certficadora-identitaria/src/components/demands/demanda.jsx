@@ -2,7 +2,7 @@ import {} from 'react'
 
 const demanda = () => {
   return (
-    <div>demanda</div>
+    <div>Solicitações de doações</div>
   )
 }
 

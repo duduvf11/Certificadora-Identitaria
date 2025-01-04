@@ -2,7 +2,7 @@ import {} from 'react'
 
 const controle = () => {
   return (
-    <div>controle</div>
+    <div>Controle de caixa e estoque</div>
   )
 }
 

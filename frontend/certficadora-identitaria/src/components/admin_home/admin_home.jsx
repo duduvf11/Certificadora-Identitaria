@@ -1,25 +1,30 @@
-import {} from 'react'
-import "./admin_home.css"
-
-import Button from 'react-bootstrap/esm/Button'
-
+import { useState } from 'react';
+import './admin_home.css';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const admin_home = () => {
   return (
-    <div> 
-    <Button className='home_button' variant="secondary" size="lg">
+    <div className="admin-home">
+      <Link to="/demands">
+      <Button className="home-button" variant="secondary" size="lg">
         SOLICITAÇÕES DE DOAÇÃO
-    </Button>
+      </Button>
+      </Link>
 
-    <Button className='home_button' variant="secondary" size="lg">
+      <Link to="/history">
+      <Button className="home-button" variant="secondary" size="lg">
         HISTÓRICO DE DOAÇÕES
-    </Button>
+      </Button>
+      </Link>
 
-    <Button className='home_button' variant="secondary" size="lg">
+      <Link to="/control">
+      <Button className="home-button" variant="secondary" size="lg">
         CONTROLE DE CAIXA E ESTOQUE
-    </Button>
-  </div>
-  )
-}
+      </Button>
+      </Link>
+    </div>
+  );
+};
 
-export default admin_home
+export default admin_home;

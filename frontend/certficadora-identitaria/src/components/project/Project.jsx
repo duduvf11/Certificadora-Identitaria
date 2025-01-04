@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
+import { Link } from 'react-router-dom';
+
 const Project = () => {
 
     const [user, setUser] = useState('');
@@ -82,9 +84,11 @@ const Project = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             />
                     </Form.Group>
+                    <Link to="/admin">
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+                    </Link>
                 </Form>
             </div>
         </div>

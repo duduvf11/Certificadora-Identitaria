@@ -2,7 +2,7 @@ import {} from 'react'
 
 const historico = () => {
   return (
-    <div>historico</div>
+    <div>Histórico de Doações</div>
   )
 }
 
