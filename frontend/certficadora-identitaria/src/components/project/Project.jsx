@@ -67,26 +67,26 @@ const Project = () => {
                     </Alert>
                     )}
                     <Form.Group className="mb-3" controlId="formBasicUsername">
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label>Usuário</Form.Label>
                         <Form.Control 
                             type="text" 
-                            placeholder="Enter Username"
+                            placeholder="Nome de usuário"
                             value={user}
                             onChange={(e) => setUser(e.target.value)}
                             />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Senha</Form.Label>
                         <Form.Control 
                             type="password" 
-                            placeholder="Password" 
+                            placeholder="Senha" 
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             />
                     </Form.Group>
                     <Link to="/admin">
-                    <Button variant="primary" type="submit">
-                        Submit
+                    <Button className='login_button' variant="primary" type="submit">
+                        Entrar
                     </Button>
                     </Link>
                 </Form>
