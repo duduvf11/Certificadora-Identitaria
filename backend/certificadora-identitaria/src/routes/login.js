@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { LoginUserService } from "../services/login/LoginUserService.js";
+import { LoginUserService} from "../services/login/LoginUserService.js";
 import { CreateUserService } from "../services/login/CreateUserService.js";
 
 const router = Router();

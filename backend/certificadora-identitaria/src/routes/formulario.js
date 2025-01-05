@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     const getAllForms = new GetAllForms();
 
     const forms = await getAllForms.execute()
-    
+
     res.json(forms)
 })
 

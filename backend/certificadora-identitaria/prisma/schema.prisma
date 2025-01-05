@@ -29,3 +29,19 @@ model Form{
     endereco String
     status Boolean
 }
+
+model Dinheiro{
+    id  Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    nome String
+    quantidade Float
+    telefone String
+}
+
+model Absorvente{
+    id  Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    nome String
+    quantidade Float
+    telefone String
+}
