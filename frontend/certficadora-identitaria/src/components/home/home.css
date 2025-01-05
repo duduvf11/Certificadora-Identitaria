@@ -1,0 +1,39 @@
+.home_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr  2.5fr;
+    max-width: 100%;
+    padding: 2.4%;
+    background: linear-gradient(270deg, rgba(217, 217, 217, 0) 1.15%, rgba(242, 145, 163, 0.5) 41.51%, rgba(225, 109, 130, 0.837539) 52.59%, #D95B72 73.54%), url("../../assets/imagem_background_home.png");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.home_logo{
+    margin-left: -45%;
+    width: 50%;
+    height: 100%;
+    gap: 0px;
+    opacity: 0px;
+    filter: saturate(0%) brightness(300%);
+}
+
+.home_container_buttons{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-top: 4%;
+}
+
+.home_button{
+    color: #000000;
+    background-color: #D9D9D9;
+    border: none;
+    margin: 2%;
+    height: 30%;
+    width: 120%;
+    box-shadow: 0px 4px 20px 0px #00000040;
+
+    font-size: 36px;
+}
