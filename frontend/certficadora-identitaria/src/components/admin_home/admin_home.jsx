@@ -9,9 +9,9 @@ const admin_home = () => {
   return (
       <div className='background'>
                   <div>
-                      <img src={Logo_Admin} alt="" className='home_logo admin'/>
+                      <img src={Logo_Admin} alt="" className='home_logo admin_logo'/>
                   </div> 
-      <div className="home_container_buttons">
+      <div className="home_container_buttons admin_container">
         <Link to="/demands">
         <Button className="home_button" variant="secondary" size="lg">
           SOLICITAÇÕES DE DOAÇÃO
