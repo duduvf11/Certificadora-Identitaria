@@ -12,3 +12,20 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id    String  @id @default(uuid())
+  senha String
+  admin Boolean
+}
+
+model Form{
+    id  Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    cpf Int
+    nome String
+    email String
+    quantidade Int
+    endereco String
+    status Boolean
+}
