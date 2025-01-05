@@ -1,4 +1,4 @@
-import prisma from "../../src/prisma/client.js"
+import prisma from "../../prisma/client.js"
 
 class AbsorventeService{
     async execute({nome, quantidade, telefone}){
