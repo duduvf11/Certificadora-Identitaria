@@ -3,7 +3,7 @@ import prisma from "../../prisma/client.js"
 class DinheiroService{
     async execute({nome, quantidade, telefone}){
 
-        const createDonationMoney = await prisma.absorvente.create({
+        const createDonationMoney = await prisma.dinheiro.create({
             data: {
                 nome: nome,
                 quantidade: quantidade,
