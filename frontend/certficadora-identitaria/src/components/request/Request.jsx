@@ -4,17 +4,51 @@ import './request.css';
 import Button from 'react-bootstrap/esm/Button';
 
 const Request = () => {
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+  const [nome, setNome] = useState('');
+  const [endereco, setEndereco] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
-  const [quantity, setQuantity] = useState(1);
+  const [quantidade, setQuantidade] = useState(1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simula a submissão e mostra os dados no console
-    alert(`Solicitação de ${quantity} absorventes registrada com sucesso!`);
-    console.log({ name, address, cpf, email, quantity });
+  
+    const requestData = {
+      nome,
+      endereco,
+      cpf: Number(cpf),
+      email,
+      quantidade: Number(quantidade), // Garantir que a quantidade seja numérica
+    };
+  
+    try {
+      const response = await fetch('http://localhost:3000/forms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert(`Solicitação registrada com sucesso! ID: ${data.id}`);
+        console.log('Resposta do servidor:', data);
+  
+        // Resetar os campos após o envio bem-sucedido
+        setNome('');
+        setEndereco('');
+        setCpf('');
+        setEmail('');
+        setQuantidade(1);
+      } else {
+        alert('Erro ao enviar a solicitação. Tente novamente.');
+        console.error('Erro:', response.statusText);
+      }
+    } catch (error) {
+      alert('Erro ao conectar com o servidor.');
+      console.error('Erro de conexão:', error);
+    }
   };
 
   return (
@@ -29,9 +63,9 @@ const Request = () => {
             <label htmlFor="name">Nome:</label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               placeholder="Seu nome"
               required
             />
@@ -41,9 +75,9 @@ const Request = () => {
             <label htmlFor="address">Endereço:</label>
             <input
               type="text"
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              id="endereco"
+              value={endereco}
+              onChange={(e) => setEndereco(e.target.value)}
               placeholder="Seu endereço"
               required
             />
@@ -52,7 +86,7 @@ const Request = () => {
           <div>
             <label htmlFor="cpf">CPF:</label>
             <input
-              type="text"
+              type="number"
               id="cpf"
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
@@ -77,9 +111,9 @@ const Request = () => {
             <label htmlFor="quantity">Quantidade de Absorventes:</label>
             <input
               type="number"
-              id="quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              id="quantidade"
+              value={quantidade}
+              onChange={(e) => setQuantidade(e.target.value)}
               min="1"
               required
             />

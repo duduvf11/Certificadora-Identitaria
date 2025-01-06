@@ -2,10 +2,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 50%;
 }
 
 .login_button{
     background-color: #D92353;
     border: none;
+    width: 100%;
+}
+
+.background img{
     width: 100%;
 }

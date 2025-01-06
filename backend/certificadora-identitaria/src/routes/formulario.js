@@ -7,12 +7,13 @@ const router = Router()
 
 //Enviar formulario
 router.post('/', async (req, res) => {
-
+    console.log("Chegou aqui")
     const {cpf, nome, email, quantidade, endereco} = req.body
     const createFormService = new CreateFormService();
 
     const createForms = await createFormService.execute({cpf, nome, email, quantidade, endereco})
 
+    console.log(createForms)
     res.json(createForms)
 
 })
