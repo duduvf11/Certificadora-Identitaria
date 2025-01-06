@@ -4,6 +4,7 @@ import loginRouter from "./src/routes/login.js"
 import formularioRouter from "./src/routes/formulario.js"
 import doacaoDinheiroRouter from "./src/routes/dinheiroDoacao.js"
 import doacaoAbsorventeRouter from "./src/routes/absorventeDoacao.js"
+import estoqueRouter from "./src/routes/estoque.js"
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use('/login', loginRouter)
 app.use('/forms', formularioRouter)
 app.use('/pad', doacaoAbsorventeRouter)
 app.use('/money', doacaoDinheiroRouter)
+app.use('/controle', estoqueRouter)
 
 app.get('/', (req,res) => {
     res.json({testing: 'Hello'})
