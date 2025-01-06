@@ -1,86 +1,112 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import "./donateMoney.css";
 
 import Button from 'react-bootstrap/esm/Button';
 
 const DonateMoney = () => {
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
-  const [phone, setPhone] = useState('');
-  const [receipt, setReceipt] = useState(null);
+  const [nome, setNome] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [comprovante, setComprovante] = useState(null);
 
   const handleFileChange = (e) => {
-    setReceipt(e.target.files[0]);
+    setComprovante(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simula a submissão e mostra os dados no console
-    alert(`Doação de R$${amount} registrada com sucesso! \nComprovante: ${receipt ? receipt.name : 'Nenhum arquivo anexado'}`);
-    console.log({ name, amount, phone, receipt });
+  
+    const data = {
+      nome,
+      quantidade: parseFloat(quantidade), // Converte para número se necessário
+      telefone,
+      comprovante: comprovante ? comprovante.name : null,
+    };
+  
+    try {
+      const response = await fetch('http://localhost:3000/money', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (response.ok) {
+        alert(`Doação de R$${quantidade} registrada com sucesso!`);
+        setNome('');
+        setQuantidade('');
+        setTelefone('');
+        setComprovante(null);
+      } else {
+        alert('Erro ao registrar a doação. Tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar a doação:', error);
+      alert('Erro ao conectar ao servidor.');
+    }
   };
 
   return (
     <div className="background">
       <div className="donate_money_container">
-        <div></div>
         <h1>Doação de Dinheiro</h1>
         <p>Preencha os campos abaixo para realizar a doação.</p>
 
-        <form className='donate_money_form' onSubmit={handleSubmit}>
+        <form className="donate_money_form" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Nome:</label>
+            <label htmlFor="nome">Nome:</label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               placeholder="Seu nome"
               required
-              />
+            />
           </div>
 
           <div>
-            <label htmlFor="amount">Valor da Doação:</label>
+            <label htmlFor="quantidade">Valor da Doação:</label>
             <input
               type="number"
-              id="amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              id="quantidade"
+              value={quantidade}
+              onChange={(e) => setQuantidade(e.target.value)}
               placeholder="Ex: 50,00"
               required
-              />
+            />
           </div>
 
           <div>
-            <label htmlFor="phone">Telefone:</label>
+            <label htmlFor="telefone">Telefone:</label>
             <input
               type="tel"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              id="telefone"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
               placeholder="(XX) XXXXX-XXXX"
               required
-              />
+            />
           </div>
 
           <div>
-            <label htmlFor="receipt">Comprovante de Doação:</label>
+            <label htmlFor="comprovante">Comprovante de Doação:</label>
             <input
               type="file"
-              id="receipt"
+              id="comprovante"
               accept="image/*,application/pdf"
               onChange={handleFileChange}
               required
-              />
+            />
           </div>
 
           <Button className="donation_button" variant="secondary" size="lg" type="submit">
-              Confirmar Doação
+            Confirmar Doação
           </Button>
         </form>
       </div>
-  </div>
+    </div>
   );
 };
 

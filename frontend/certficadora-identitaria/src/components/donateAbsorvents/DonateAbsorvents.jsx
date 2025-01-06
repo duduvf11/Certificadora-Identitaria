@@ -8,11 +8,38 @@ const DonateAbsorvents = () => {
   const [quantity, setQuantity] = useState(1);
   const [phone, setPhone] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simula a submissão e mostra os dados no console
-    alert(`Doação de ${quantity} pacotes de absorventes registrada com sucesso!`);
-    console.log({ name, quantity, phone });
+
+    // Criar um objeto com os dados da doação
+    const donationData = {
+      nome: name,
+      quantidade: Number(quantity),
+      telefone: phone,
+    };
+
+    try {
+      // Enviar os dados para o backend
+      const response = await fetch('http://localhost:3000/pad', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Definir o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify(donationData), // Converter os dados para formato JSON
+      });
+
+      if (response.ok) {
+        alert(`Doação de ${quantity} pacotes de absorventes registrada com sucesso!`);
+        setName('');
+        setQuantity(1);
+        setPhone('');
+      } else {
+        alert('Erro ao registrar a doação. Tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar a doação:', error);
+      alert('Erro ao conectar ao servidor.');
+    }
   };
 
   return (
